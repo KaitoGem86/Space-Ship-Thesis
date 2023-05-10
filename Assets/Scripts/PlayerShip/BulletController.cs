@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
 {
     // Update is called once per frame
     [SerializeField] private Rigidbody2D rb;
+    private PlayerController ship;
 
     private float time = 5f;
     private float speed = 1;
@@ -15,8 +16,7 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
-        direction = InputController.Instance.GetInputMove();
-        direction.Normalize();
+        SetPosition();
     }
 
 
@@ -32,7 +32,7 @@ public class BulletController : MonoBehaviour
         t.x = 0;
         t.y = 0;
         transform.rotation = t;
-        rb.velocity += direction * speed; 
+        rb.velocity = direction * speed * 20;
     }
 
     void DestroyBullet()
@@ -42,7 +42,16 @@ public class BulletController : MonoBehaviour
         else
         {
             time = 5f;
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
+    }
+    
+
+    public void SetPosition()
+    {
+        direction = InputController.Instance.GetInputMove();
+        direction.Normalize();
+        ship = GameManager.instance.currentShip;
+        transform.position = (Vector2)ship.transform.position + direction;
     }
 }
