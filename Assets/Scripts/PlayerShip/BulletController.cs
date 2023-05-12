@@ -12,6 +12,8 @@ public class BulletController : MonoBehaviour
 
     private float time = 5f;
     private float speed = 1;
+    private float dame = 1;
+
     private Vector2 direction;
 
     private void Start()
@@ -43,6 +45,7 @@ public class BulletController : MonoBehaviour
         {
             time = 5f;
             this.gameObject.SetActive(false);
+            SetPosition();
         }
     }
     
@@ -52,6 +55,22 @@ public class BulletController : MonoBehaviour
         direction = InputController.Instance.GetInputMove();
         direction.Normalize();
         ship = GameManager.instance.currentShip;
-        transform.position = (Vector2)ship.transform.position + direction;
+        transform.position = (Vector2)ship.transform.position + direction * 1f;
+    }
+
+    private void Damage(BaseEnemy enemy, float dame)
+    {
+        enemy.Hp -= dame;
+        if (enemy.Hp < 0)
+            enemy.Die();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyShip"))
+        {
+            Damage(collision.GetComponent<BaseEnemy>(), dame);
+            this.gameObject.SetActive(false);
+        }
     }
 }

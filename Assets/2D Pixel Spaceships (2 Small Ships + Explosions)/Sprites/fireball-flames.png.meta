@@ -138,11 +138,53 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fireball
+      name: fireball-flames_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 53
+        x: 1
+        y: 0
+        width: 30
+        height: 61
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ad56ab5f239594da686a14fd27394a
+      internalID: -495069306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireball-flames_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 13
+        height: 31
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a98a41147dfaca4d97aa492648732d1
+      internalID: 662671067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireball-flames_2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
         width: 11
         height: 11
       alignment: 0
@@ -152,50 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5da8494accc7cb2409094ddf485a932a
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flame-small
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 33
-        width: 16
-        height: 30
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ce608b460ff4ba488a317284fcb5a09
-      internalID: 21300002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flame-big
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 3
-        width: 32
-        height: 61
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fab6c09d9a72e1241bf16fc83513f32e
-      internalID: 21300004
+      spriteID: bcdcc9338cd19a14caf7ae3053570eca
+      internalID: 1420512958
       vertices: []
       indices: 
       edges: []
@@ -211,9 +211,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      flame-big: 21300004
-      fireball: 21300000
-      flame-small: 21300002
+      fireball-flames_1: 662671067
+      fireball-flames_2: 1420512958
+      fireball-flames_0: -495069306
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

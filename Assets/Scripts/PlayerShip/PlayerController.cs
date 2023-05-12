@@ -8,11 +8,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public BulletSpawner bulletSpawner;
 
     private GameObject bulletPrefab;
-    private float speed = 3;
 
-    private void Start()
+    private float maxHp = 10;
+    private float hp = 10;
+    private float speed = 4;
+
+    public float Hp
     {
+        get { return hp; }
+        set { hp = value; }
     }
+
 
     protected virtual void Move()
     {
@@ -28,5 +34,10 @@ public class PlayerController : MonoBehaviour
             var bullet = bulletSpawner.GetBullet();
             bullet.gameObject.SetActive(true);
         }
+    }
+
+    protected virtual void Damage(float dame)
+    {
+        hp -= dame;
     }
 }

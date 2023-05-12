@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public PlayerController currentShip;
+    public MotherSpaceEnemy motherSpaceEnemy;
 
     private void Awake()
     {

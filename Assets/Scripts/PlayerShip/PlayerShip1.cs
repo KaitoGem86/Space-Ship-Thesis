@@ -18,6 +18,7 @@ public class PlayerShip1 : PlayerController
         var t = Quaternion.LookRotation(InputController.Instance.GetInputMove(),Vector3.back);
         t.x = 0;
         t.y = 0;
+
         transform.rotation = t;
     }
 

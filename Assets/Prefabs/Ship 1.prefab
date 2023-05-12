@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 6248601829476196958}
   m_Layer: 0
   m_Name: Ship 1
-  m_TagString: Untagged
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +85,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6248601829476196958}
     m_Modifications:
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.data[1].name
+      value: Specil Ice Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.data[2].dame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.data[2].name
+      value: Ice Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.data[2].speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 237158859, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
+      propertyPath: bulletDatas.Array.data[2].bulletPrefab
+      value: 
+      objectReference: {fileID: 8162872820811334655, guid: a4530806d8ca83a419bf74ba882b7a24, type: 3}
     - target: {fileID: 808177680875998354, guid: 5ea23979748b7ec41ad2358c2e7048c2, type: 3}
       propertyPath: m_Name
       value: PlayerShip

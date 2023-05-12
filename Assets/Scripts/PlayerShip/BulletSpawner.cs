@@ -15,6 +15,12 @@ public class BulletSpawner : MonoBehaviour
     {
         InitPool();
     }
+
+    private void Update()
+    {
+        this.SetBullet();    
+    }
+
     private void InitPool()
     {
         bullet = weapon.SetBullet();
@@ -50,5 +56,13 @@ public class BulletSpawner : MonoBehaviour
         return null;
     }
 
+    void SetBullet()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ClearPool();
+            InitPool();
+        }
+    }
 
 }
