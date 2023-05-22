@@ -14,8 +14,19 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    public void Start()
+    {
+        InvokeRepeating("UpdateAstar", 0, 0.5f);
+    }
+
+    void    UpdateAstar()
+    {
+        AstarPath.active.Scan();
+    }
+
     public void GameOver()
     {
+        currentShip.gameObject.SetActive(false);
         Time.timeScale = 0f;
     }
 

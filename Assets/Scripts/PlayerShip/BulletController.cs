@@ -12,13 +12,13 @@ public class BulletController : MonoBehaviour
 
     private float time = 5f;
     private float speed = 1;
-    private float dame = 1;
+    private float dame = 5;
 
     private Vector2 direction;
 
     private void Start()
     {
-        SetPosition();
+        //SetPosition();
     }
 
 
@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
         {
             time = 5f;
             this.gameObject.SetActive(false);
-            SetPosition();
+            //SetPosition();
         }
     }
     
@@ -61,7 +61,8 @@ public class BulletController : MonoBehaviour
     private void Damage(BaseEnemy enemy, float dame)
     {
         enemy.Hp -= dame;
-        if (enemy.Hp < 0)
+        enemy.UpdateHealth();
+        if (enemy.Hp <= 0)
             enemy.Die();
     }
 

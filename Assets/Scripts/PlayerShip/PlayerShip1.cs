@@ -9,6 +9,7 @@ public class PlayerShip1 : PlayerController
     {
         Move();
         Attack();
+        this.SpeedUp();
     }
 
     protected override void Move()

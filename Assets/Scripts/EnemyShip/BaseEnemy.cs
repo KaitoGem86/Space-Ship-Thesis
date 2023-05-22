@@ -5,14 +5,25 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private EnemyHealthBarController healthBar;
+    //[SerializeField] protected BulletController bullet;
 
     private Vector2 direction;
+    private Vector2 rotateDirection;
+
     private float speed = 2;
 
     private float dameAgainstPlayer = 1;
 
-    private float hp = 10;
+
     private float maxHp = 10;
+    private float hp;
+
+    public Vector2 RotateDirection
+    {
+        get { return rotateDirection; }
+        set { rotateDirection = value; }
+    }
 
     public Vector2 Direction
     {
@@ -37,20 +48,29 @@ public class BaseEnemy : MonoBehaviour
         set { hp = value; }
     }
 
+    public float MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp =  value; }
+    }
+
     public virtual void Move()
-    {   
+    {
 
         direction.Normalize();
-        Quaternion t = Quaternion.LookRotation(direction, Vector3.back);
-        t.x = 0;
-        t.y = 0;
-
         //Vector2 pos = this.transform.position;
         //pos += direction * speed * Time.deltaTime * 2;
         //this.transform.position = pos;
-        rb.velocity = direction * speed;
+        rb.velocity = direction.normalized * speed;
+    }
 
+    public virtual void Rotate()
+    {
+        Quaternion t = Quaternion.LookRotation(rotateDirection, Vector3.back);
+        t.x = 0;
+        t.y = 0;
         this.transform.rotation = t;
+        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, t, 0.1f);
     }
 
     public virtual void Die()
@@ -59,12 +79,11 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    public virtual void Dame(PlayerController player,float dame)
+    public virtual void Dame(PlayerController player, float dame)
     {
         player.Hp -= dame;
         if (player.Hp < 0)
         {
-            player.gameObject.SetActive(false);
             GameManager.instance.GameOver();
         }
     }
@@ -77,10 +96,17 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected virtual void SetPostion()
+    public virtual void SetPostion()
     {
         Vector2 pos = new Vector2();
         pos = GameManager.instance.motherSpaceEnemy.transform.position;
         this.transform.position = pos;
     }
+
+    public virtual void UpdateHealth()
+    {
+        healthBar.SetHealth(this.hp / this.maxHp);
+    }
+
+    protected virtual void Attack() { }
 }

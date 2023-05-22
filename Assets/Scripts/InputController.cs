@@ -47,10 +47,11 @@ public class InputController : MonoBehaviour
 
     public bool GetInputAttack()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-            return true;
-        return false;
+        return (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
     }
 
-
+    public bool GetInputSpeedUp()
+    {
+        return (Input.GetKey(KeyCode.LeftShift) || Input.GetMouseButtonDown(1));
+    }
 }
