@@ -8,9 +8,25 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     private int indexBullet = 0;
 
+    public int IndexBullet
+    {
+        get { return indexBullet; }
+        set { indexBullet = value; }
+    }
+
     private void Start()
     {
         bulletPrefab = bulletDatas[indexBullet].bulletPrefab;
+    }
+
+    public void ChangeBullet()
+    {
+        Debug.Log("Change");
+        this.indexBullet = (this.indexBullet + 1);
+        if (indexBullet > bulletDatas.Length - 1)
+        {
+            indexBullet = bulletDatas.Length - 1;
+        }
     }
 
     public GameObject SetBullet()

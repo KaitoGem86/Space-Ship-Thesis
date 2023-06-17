@@ -16,11 +16,11 @@ public class PlayerShip1 : PlayerController
     {
         base.Move();
 
-        var t = Quaternion.LookRotation(InputController.Instance.GetInputMove(),Vector3.back);
-        t.x = 0;
-        t.y = 0;
+        //var t = Quaternion.LookRotation(InputController.Instance.GetInputMove(),Vector3.back);
+        //t.x = 0;
+        //t.y = 0;
 
-        transform.rotation = t;
+        //transform.rotation = t;
     }
 
     protected override void Attack()

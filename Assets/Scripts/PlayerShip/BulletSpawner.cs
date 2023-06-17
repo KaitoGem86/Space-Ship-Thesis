@@ -8,8 +8,10 @@ public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] private Weapon weapon;
     private GameObject bullet;
-    private int poolSize = 30;
+    private int poolSize = 50;
     private BulletController[] bullets;
+
+    public Weapon Weapon { get { return weapon; } }
 
     private void Start()
     {
@@ -18,15 +20,15 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
-        this.SetBullet();    
+        //this.SetBullet();
     }
 
     private void InitPool()
     {
         bullet = weapon.SetBullet();
-        if(bullets == null)
+        if (bullets == null)
             bullets = new BulletController[poolSize];
-        for(int i = 0; i < poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             var bulletObject = Instantiate(bullet, this.transform);
             bullets[i] = bulletObject.GetComponent<BulletController>();
@@ -45,7 +47,7 @@ public class BulletSpawner : MonoBehaviour
 
     public BulletController GetBullet()
     {
-        for(int i = 0; i<poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             if (!bullets[i].gameObject.activeSelf)
             {
@@ -56,13 +58,10 @@ public class BulletSpawner : MonoBehaviour
         return null;
     }
 
-    void SetBullet()
+    public void SetBullet()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ClearPool();
-            InitPool();
-        }
+        ClearPool();
+        InitPool();
     }
 
 }

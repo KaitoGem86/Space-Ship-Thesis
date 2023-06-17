@@ -29,7 +29,7 @@ public class InputController : MonoBehaviour
 
     public Vector2 GetInputKeyCode()
     {
-        Vector2 pos = new Vector2 ();
+        Vector2 pos = new Vector2();
 
         pos.x = Input.GetAxis("Horizontal");
         pos.y = Input.GetAxis("Vertical");
@@ -39,9 +39,13 @@ public class InputController : MonoBehaviour
 
     public Vector2 GetInputMouse()
     {
+
         Vector2 pos = new Vector2();
-        Vector2 screenMousePos = Input.mousePosition;
-        pos = Camera.main.ScreenToWorldPoint(screenMousePos) - playerShip.transform.position;
+        if (Input.GetMouseButton(0))
+        {
+            Vector2 screenMousePos = Input.mousePosition;
+            pos = Camera.main.ScreenToWorldPoint(screenMousePos) - playerShip.transform.position;
+        }
         return pos;
     }
 

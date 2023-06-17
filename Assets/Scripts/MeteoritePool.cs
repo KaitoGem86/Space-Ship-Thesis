@@ -21,6 +21,10 @@ public class MeteoritePool : MonoBehaviour
         SetMeteoritePool();
     }
 
+    private void Update()
+    {
+    }
+
     void SetMeteoritePool()
     {
         meteorites = new MeteoriteController[poolSize];
@@ -45,4 +49,5 @@ public class MeteoritePool : MonoBehaviour
         mt = data.Data[index];
         return mt;
     }
+
 }

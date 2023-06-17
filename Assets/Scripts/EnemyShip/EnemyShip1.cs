@@ -7,10 +7,12 @@ public class EnemyShip1 : BaseEnemy
     //[SerializeField] BulletSpawner spawner;
 
     private PlayerController target;
-    private float distance = 0.3f;
-    private MotherSpaceEnemy motherSpaceEnemy;
+    private GameObject motherSpaceEnemy;
+    private float rangeAttack = 10;
+    private float timer = 3;
+    [SerializeField] private EnemyWeapon weapon;
 
-    public MotherSpaceEnemy MotherSpaceEnemy
+    public GameObject MotherSpaceEnemy
     {
         get { return motherSpaceEnemy; }
         set { motherSpaceEnemy = value; }
@@ -30,10 +32,6 @@ public class EnemyShip1 : BaseEnemy
         this.Attack();
     }
 
-    public override void Die()
-    {
-        base.Die();
-    }
 
     public override void SetPostion()
     {
@@ -43,11 +41,25 @@ public class EnemyShip1 : BaseEnemy
         this.Hp = this.MaxHp;
     }
 
-    //protected override void Attack()
-    //{
-    //    if(Vector2.Distance(target.transform.position, this.transform.position) < distance)
-    //    {
-    //        Instantiate(bullet, this.transform.position, Quaternion.FromToRotation(this.Direction, this.Direction));
-    //    }
-    //}
+    protected override void Attack()
+    {
+        if (Vector2.Distance(target.transform.position, this.transform.position) < rangeAttack && timer <= 0)
+        {
+            weapon.Attack();
+            timer = 3;
+        }
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerShip"))
+        {
+            Dame(collision.gameObject.GetComponent<PlayerController>(), this.DameAgainstPlayer);
+            this.gameObject.SetActive(false);
+        }
+    }
 }

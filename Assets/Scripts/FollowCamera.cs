@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
-{   
+{
+    [SerializeField] private float distance;
     private GameObject target;
 
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class FollowCamera : MonoBehaviour
         target = GameManager.instance.currentShip.gameObject;
         Vector3 position = transform.position;
         position.x = target.transform.position.x;
-        position.y = target.transform.position.y + 1.5f;
+        position.y = target.transform.position.y + distance;
         if (position.x < 2.2f)
             position.x = 2.2f;
         if (position.x > 58.5f)

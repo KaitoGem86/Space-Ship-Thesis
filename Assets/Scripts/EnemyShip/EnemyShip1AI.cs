@@ -1,7 +1,7 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class EnemyShip1AI : BaseEnemy
 {
@@ -10,7 +10,7 @@ public class EnemyShip1AI : BaseEnemy
 
     Path path;
     int currentWayPoint = 0;
-    bool reachedEndOfPath = false;
+
 
     Seeker seeker;
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class EnemyShip1AI : BaseEnemy
 
     void OnPathComplete(Path p)
     {
-        if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWayPoint = 0;
@@ -43,15 +43,12 @@ public class EnemyShip1AI : BaseEnemy
     {
         if (path == null)
             return;
-        if(currentWayPoint >= path.vectorPath.Count)
+        if (currentWayPoint >= path.vectorPath.Count)
         {
-            reachedEndOfPath = true;
+
             return;
         }
-        else
-        {
-            reachedEndOfPath =false;
-        }
+
 
         this.Direction = ((Vector2)path.vectorPath[currentWayPoint] - (Vector2)this.transform.position).normalized;
         //Vector2 force = direction * speed * Time.deltaTime;
@@ -60,8 +57,8 @@ public class EnemyShip1AI : BaseEnemy
         base.Move();
 
         float distance = Vector2.Distance(this.transform.position, path.vectorPath[currentWayPoint]);
-        
-        if(distance < nextWayPointDistance)
+
+        if (distance < nextWayPointDistance)
         {
             currentWayPoint++;
         }
@@ -76,9 +73,9 @@ public class EnemyShip1AI : BaseEnemy
 
     }
 
-    void UpdatePath() 
+    void UpdatePath()
     {
-        if(seeker.IsDone())
-        seeker.StartPath(this.transform.position, target.position, OnPathComplete);
+        if (seeker.IsDone())
+            seeker.StartPath(this.transform.position, target.position, OnPathComplete);
     }
 }

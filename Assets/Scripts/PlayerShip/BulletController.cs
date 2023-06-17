@@ -30,40 +30,50 @@ public class BulletController : MonoBehaviour
 
     void Move()
     {
-        var t = Quaternion.LookRotation(direction, Vector3.forward);
-        t.x = 0;
-        t.y = 0;
-        transform.rotation = t;
-        rb.velocity = direction * speed * 20;
+        //var t = Quaternion.LookRotation(direction, Vector3.forward);
+        //t.x = 0;
+        //t.y = 0;
+        //transform.rotation = t;
+        rb.velocity = transform.up * speed * 20;
     }
 
     void DestroyBullet()
     {
-        if(time > 0)
+        if (time > 0)
             time -= Time.deltaTime;
         else
         {
-            time = 5f;
+            time = 4f;
             this.gameObject.SetActive(false);
             //SetPosition();
         }
     }
-    
+
 
     public void SetPosition()
     {
         direction = InputController.Instance.GetInputMove();
         direction.Normalize();
         ship = GameManager.instance.currentShip;
-        transform.position = (Vector2)ship.transform.position + direction * 1f;
+        transform.position = (Vector2)ship.transform.position + (Vector2)transform.up * 1f;
     }
 
     private void Damage(BaseEnemy enemy, float dame)
     {
+        if (enemy.transform.position.y > 7)
+        {
+            return;
+        }
         enemy.Hp -= dame;
         enemy.UpdateHealth();
+
         if (enemy.Hp <= 0)
+        {
             enemy.Die();
+            Debug.Log("update point");
+            GameManager.instance.point += 1;
+            UIManager.instance.UpdatePoint(GameManager.instance.point);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

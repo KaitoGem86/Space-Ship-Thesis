@@ -11,7 +11,7 @@ public class MeteoriteController : MonoBehaviour
     private Vector2 direction;
 
     private float speed = 0.05f;
-    private float range = 5;
+
 
     public float Speed
     {

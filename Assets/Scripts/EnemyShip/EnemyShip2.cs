@@ -1,70 +1,54 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShip2 : BaseEnemy
 {
+    [SerializeField] EnemyWeapon weapon;
 
-    private MotherSpaceEnemy motherSpaceShip;
+
     private Vector2 ref_dir;
 
-
-    public MotherSpaceEnemy MotherSpaceEnemy
-    {
-        get { return motherSpaceShip; }
-        set { motherSpaceShip = value; }
-    }
+    private float timer = 2;
 
     // Start is called before the first frame update
     void Start()
     {
         this.MaxHp = 20;
         this.Hp = this.MaxHp;
-
+        timer = UnityEngine.Random.Range(4, 6);
         //motherSpaceShip = GameManager.instance.motherSpaceEnemy;
-        ref_dir = motherSpaceShip.Direction * motherSpaceShip.Speed;
+        //ref_dir = motherSpaceShip.Direction * motherSpaceShip.Speed;
         this.Speed = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.Move();
+        //this.Move();
         this.Rotate();
-    }
-
-    public override void Move()
-    {
-        var n_dir = this.transform.position - motherSpaceShip.transform.position;
-        Vector2 dir = new Vector2(n_dir.y, -n_dir.x);
-
-        this.Direction = dir/* + ref_dir*/;
-        this.Speed = 3;
-
-        //Debug.Log(motherSpaceShip.transform.position);
-        //Debug.Log(this.transform.position);
-        //Debug.Log(this.Direction);
-
-        base.Move();
-
+        Attack();
     }
 
     public override void Rotate()
     {
-        Quaternion t = Quaternion.LookRotation(this.Direction, Vector3.back);
+        Quaternion t = Quaternion.LookRotation(Vector2.down, Vector3.back);
         t.x = 0;
         t.y = 0;
         this.transform.rotation = t;
     }
 
-    int GetDegree()
+    protected override void Attack()
     {
-        Vector2 center = motherSpaceShip.transform.position;
-        Vector2 pos = this.transform.position;
-        float cos = (pos.x * center.x - pos.y * center.y) / (pos.magnitude * center.magnitude);
-        int degree = System.Convert.ToInt32(cos);
-        return degree;
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            timer = 2;
+            weapon.Attack();
+        }
     }
-
 }
